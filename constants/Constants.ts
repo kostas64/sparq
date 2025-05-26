@@ -96,3 +96,8 @@ export const SPRING_ANIM_CONFIG = {
   stiffness: 90,
   mass: 1,
 };
+
+// Slice To Add
+export const SLIDER_W = WIDTH - 52;
+export const SLIDER_FINAL_W = 76;
+export const SLIDER_H = 76;

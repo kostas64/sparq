@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 
 import ScalePresasble from "@/components/ScalePresasble";
 import Text from "@/components/ui/Text";
 import { MEDIUM_MAX_MULTIPLIER } from "@/constants/Constants";
+import { useTabbarVisibility } from "@/context/TabbarContext";
+import { useIsFocused } from "@react-navigation/native";
 import { router } from "expo-router";
 import Arrow from "../../assets/images/svg/arrow-narrow-right.svg";
 
@@ -39,6 +41,15 @@ const Item = ({ title, caption, onPress }: ItemProps) => {
 };
 
 const ChooseExample = () => {
+  const isFocused = useIsFocused();
+  const { hideTabbar } = useTabbarVisibility();
+
+  useEffect(() => {
+    if (isFocused) {
+      hideTabbar();
+    }
+  }, [isFocused, hideTabbar]);
+
   return (
     <View className="flex-1 justify-center gap-4 bg-background">
       <Text
@@ -55,7 +66,7 @@ const ChooseExample = () => {
       <Item
         title="Rest of Examples"
         caption="S2S Transition"
-        onPress={() => router.navigate("/(initial)/(tabs)")}
+        onPress={() => router.navigate("/(initial)/addVehicle")}
       />
     </View>
   );

@@ -1,82 +1,133 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import AnimatedView from "@/components/ui/AnimatedView";
+import SlideInTrantition from "@/components/ui/SlideInTransition";
 import Text from "@/components/ui/Text";
+import { HEIGHT, SPRING_ANIM_CONFIG } from "@/constants/Constants";
+import { useTabbarVisibility } from "@/context/TabbarContext";
+import { Image } from "expo-image";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { useAnimatedStyle, withSpring } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Arrow from "../../../assets/images/svg/arrow-narrow-right.svg";
+import Logo from "../../../assets/images/svg/Logo.svg";
 
 export default function HomeScreen() {
+  const insets = useSafeAreaInsets();
+  const paddingTop = insets.top > 0 ? insets.top + 64 : 84;
+
+  const { showTabbar } = useTabbarVisibility();
+  const [hideLaunchScreen, setHideLaunchScreen] = useState(false);
+
+  const translateLaunchStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: hideLaunchScreen
+          ? withSpring(-HEIGHT, SPRING_ANIM_CONFIG)
+          : 0,
+      },
+    ],
+  }));
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <Text className="font-roman text-green">to your new app.</Text>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">
-            npm run reset-project
-          </ThemedText>{" "}
-          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
-          directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <>
+      <AnimatedView
+        style={translateLaunchStyle}
+        className="absolute z-50 w-full h-full items-center justify-center bg-primary"
+      >
+        <SlideInTrantition
+          withFade
+          index={2}
+          animate
+          delay={50}
+          distanceToTravel={25}
+          onFinish={() =>
+            setTimeout(() => {
+              setHideLaunchScreen(true);
+              showTabbar();
+            }, 750)
+          }
+        >
+          <Logo />
+        </SlideInTrantition>
+
+        <SlideInTrantition
+          withFade
+          index={3}
+          delay={50}
+          animate
+          distanceToTravel={50}
+        >
+          <Text className="text-4xl font-roman text-white">Welcome to</Text>
+        </SlideInTrantition>
+        <SlideInTrantition
+          withFade
+          index={3}
+          delay={50}
+          animate
+          distanceToTravel={50}
+        >
+          <Text className="text-4xl font-heavy text-white">SPARQ</Text>
+        </SlideInTrantition>
+      </AnimatedView>
+
+      <View className="flex-1 bg-background px-5" style={{ paddingTop }}>
+        <SlideInTrantition index={0} delay={25} animate={hideLaunchScreen}>
+          <Text className="font-roman text-too-grey" style={{ fontSize: 48 }}>
+            Good Morning
+          </Text>
+          <Text className="font-roman text-light-grey" style={{ fontSize: 48 }}>
+            Riley
+          </Text>
+        </SlideInTrantition>
+
+        <SlideInTrantition index={1} delay={50} animate={hideLaunchScreen}>
+          <View className="pl-7 pt-9 pb-7 mt-7 bg-background-secondary rounded-ss-3xl rounded-se-3xl">
+            <Text className="font-book">
+              <Text className="text-too-grey" style={{ fontSize: 160 }}>
+                93
+              </Text>
+              <Text className="text-text-quaternary" style={{ fontSize: 32 }}>
+                /100
+              </Text>
+            </Text>
+          </View>
+          <View className="flex-row justify-between px-7 py-5 bg-background-secondary border-t border-background-white rounded-es-3xl rounded-ee-3xl">
+            <Text className="text-lg font-roman">Perform Health Check</Text>
+            <Arrow />
+          </View>
+        </SlideInTrantition>
+
+        <SlideInTrantition index={2} delay={75} animate={hideLaunchScreen}>
+          <View className="mt-4 p-5 bg-background-secondary rounded-3xl">
+            <Text
+              className="text-too-grey font-medium text-lg"
+              style={{ lineHeight: 18 }}
+            >
+              Mercedes Benz GLE GLE 450 4MATIC
+            </Text>
+            <Text
+              className="text-text-quaternary font-medium text-lg"
+              style={{ lineHeight: 18 }}
+            >
+              GLE 450 4MATIC
+            </Text>
+
+            <Image
+              source={require("../../../assets/images/cars/image_14.png")}
+              style={styles.img}
+            />
+          </View>
+        </SlideInTrantition>
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  img: {
+    alignSelf: "center",
+    width: 265,
+    height: 105,
+    marginTop: 32,
   },
 });

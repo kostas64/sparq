@@ -20,8 +20,16 @@ const InitialLayout = () => {
         }}
       />
       <Stack.Screen
+        name="addVehicle"
+        options={{
+          headerShown: false,
+          contentStyle: { backgroundColor: colors?.background },
+        }}
+      />
+      <Stack.Screen
         name="(tabs)"
         options={{
+          animation: "none",
           headerShown: false,
           contentStyle: { backgroundColor: colors?.background },
         }}

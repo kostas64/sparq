@@ -1,5 +1,11 @@
 import { ImageSourcePropType } from "react-native";
-import { SharedValue } from "react-native-reanimated";
+import {
+  BaseAnimationBuilder,
+  EntryExitAnimationFunction,
+  LayoutAnimationFunction,
+  SharedValue,
+} from "react-native-reanimated";
+import { ReanimatedKeyframe } from "react-native-reanimated/lib/typescript/layoutReanimation/animationBuilder/Keyframe";
 
 export type AnimatedGaragePickerProps = {
   ref: React.RefObject<any>;
@@ -22,3 +28,15 @@ export type CarType = {
   name: string;
   miles: string;
 };
+
+export type EnteringExitingAnimationType =
+  | BaseAnimationBuilder
+  | typeof BaseAnimationBuilder
+  | EntryExitAnimationFunction
+  | ReanimatedKeyframe;
+
+export type LayoutAnimationType =
+  | BaseAnimationBuilder
+  | typeof BaseAnimationBuilder
+  | LayoutAnimationFunction
+  | undefined;

@@ -1,3 +1,8 @@
+import colors from "@/assets/colors";
+import Chevron from "@/assets/images/svg/cheveron-right.svg";
+import Edit from "@/assets/images/svg/edit-05.svg";
+import Info from "@/assets/images/svg/info-circle.svg";
+import Trash from "@/assets/images/svg/trash-03.svg";
 import {
   CAR_HEIGHT,
   CARS,
@@ -23,11 +28,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import colors from "../../assets/colors";
-import Chevron from "../../assets/images/svg/cheveron-right.svg";
-import Edit from "../../assets/images/svg/edit-05.svg";
-import Info from "../../assets/images/svg/info-circle.svg";
-import Trash from "../../assets/images/svg/trash-03.svg";
 import GaragePickerListItem from "../garagePicker/GaragePickerListItem";
 import SelectedCarBox from "../garagePicker/SelectedCarBox";
 import AnimatedPill from "./AnimatedPill";

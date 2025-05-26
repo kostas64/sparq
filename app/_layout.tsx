@@ -9,6 +9,7 @@ import { Stack } from "expo-router";
 import "react-native-reanimated";
 import "../global.css";
 
+import TabbarProvider from "@/context/TabbarContext";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -39,10 +40,12 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack>
-            <Stack.Screen name="(initial)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
+          <TabbarProvider>
+            <Stack>
+              <Stack.Screen name="(initial)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </TabbarProvider>
           {/* <StatusBar style="auto" /> */}
         </ThemeProvider>
       </BottomSheetModalProvider>
