@@ -1,0 +1,98 @@
+import { Dimensions, Platform } from "react-native";
+
+export const isIOS = Platform.OS === "ios";
+export const WIDTH = Dimensions.get("window").width;
+export const HEIGHT = Dimensions.get("screen").height;
+
+// Accessibility
+export const GENERIC_MAX_MULTIPLIER = isIOS ? 1.7 : 1.3;
+export const MEDIUM_MAX_MULTIPLIER = isIOS ? 1.5 : 1.2;
+export const SMALL_MAX_MULTIPLIER = isIOS ? 1.3 : 1.1;
+
+// Picker Example
+export const VISIBLE_CARS = 5;
+export const CAR_HEIGHT = 75;
+export const HEADER_HEIGHT = 42;
+
+export const CARS = [
+  {
+    image: require("../assets/images/cars/image_11.png"),
+    name: "Mercedes GLS",
+    miles: "30.429 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_6.png"),
+    name: "Lamborghini Aventador",
+    miles: "3.283 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_7.png"),
+    name: "Golf GTI Performance",
+    miles: "72.313 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_3.png"),
+    name: "Nissan Frontier",
+    miles: "7.278 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_2.png"),
+    name: "Honda Accorrd",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_1.png"),
+    name: "Dodge Chrysler",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_13.png"),
+    name: "Ford Explorer",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+];
+
+export const EXTRA_PICKER_CARS = [
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+  {
+    image: require("../assets/images/cars/image_5.png"),
+    name: "Mustang GT",
+    miles: "23 miles",
+  },
+];
+
+// Spring Config
+export const SPRING_ANIM_CONFIG = {
+  damping: 20,
+  stiffness: 90,
+  mass: 1,
+};
