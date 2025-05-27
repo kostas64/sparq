@@ -1,48 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import ScalePresasble from "@/components/ScalePresasble";
-import Text from "@/components/ui/Text";
-import { MEDIUM_MAX_MULTIPLIER } from "@/constants/Constants";
+import { primary } from "@/assets/colors";
+import AnimatedTyping from "@/components/ui/AnimatedTyping";
+import ExampleBox from "@/components/ui/ExampleBox";
 import { useTabbarVisibility } from "@/context/TabbarContext";
 import { useIsFocused } from "@react-navigation/native";
 import { router } from "expo-router";
-import Arrow from "../../assets/images/svg/arrow-narrow-right.svg";
-
-type ItemProps = {
-  title: string;
-  caption: string;
-  onPress: () => void;
-};
-
-const Item = ({ title, caption, onPress }: ItemProps) => {
-  return (
-    <ScalePresasble
-      onPress={onPress}
-      className="bg-background-light mx-4 p-4 rounded-lg "
-    >
-      <Text
-        maxFontSizeMultiplier={MEDIUM_MAX_MULTIPLIER}
-        className="font-medium text-xl text-black"
-      >
-        {title}
-      </Text>
-      <Text
-        maxFontSizeMultiplier={MEDIUM_MAX_MULTIPLIER}
-        className="font-roman text-sm text-too-grey"
-      >
-        {caption}
-      </Text>
-      <View className="absolute bottom-0 right-0 m-4">
-        <Arrow width={24} height={18} />
-      </View>
-    </ScalePresasble>
-  );
-};
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ChooseExample = () => {
   const isFocused = useIsFocused();
+  const insets = useSafeAreaInsets();
   const { hideTabbar } = useTabbarVisibility();
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     if (isFocused) {
@@ -50,22 +21,33 @@ const ChooseExample = () => {
     }
   }, [isFocused, hideTabbar]);
 
+  const paddingTop = insets.top > 0 ? insets.top + 16 : 32;
+
   return (
-    <View className="flex-1 justify-center gap-4 bg-background">
-      <Text
-        maxFontSizeMultiplier={MEDIUM_MAX_MULTIPLIER}
-        className="font-medium text-2xl text-black px-4"
-      >
-        Choose example
-      </Text>
-      <Item
-        title="Garage Picker Component"
-        onPress={() => router.navigate("/picker")}
-        caption="The component simulates a car selection UI"
+    <View className="flex-1 gap-4 bg-background" style={{ paddingTop }}>
+      <AnimatedTyping
+        text={[
+          "Hi SPARQ team",
+          "\n\nI'm Konstantinos Efkarpidis",
+          "and this is my exploration !!",
+          "\nEnjoy ®",
+        ]}
+        cursorInterval={100}
+        onComplete={() => setAnimate(true)}
+        textStyle={{ marginLeft: 16, color: primary, lineHeight: 25 }}
       />
-      <Item
-        title="Rest of Examples"
-        caption="S2S Transition"
+      <ExampleBox
+        index={1}
+        title="Garage Picker"
+        animate={animate}
+        onPress={() => router.navigate("/picker")}
+        caption="Car selection UI"
+      />
+      <ExampleBox
+        index={2}
+        animate={animate}
+        title="S2S - Shared Transition - Loop"
+        caption="All in one"
         onPress={() => router.navigate("/(initial)/addVehicle")}
       />
     </View>

@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType, StyleProp, TextStyle } from "react-native";
 import {
   BaseAnimationBuilder,
   EntryExitAnimationFunction,
@@ -16,6 +16,13 @@ export type AnimatedGaragePickerProps = {
   onSelectCar: (car: CarType) => void;
   revertPicker: () => void;
   externalOpenPicker: () => void;
+};
+
+export type AnimatedTypingProps = {
+  text: string[];
+  textStyle?: StyleProp<TextStyle>;
+  cursorStyle?: StyleProp<TextStyle>;
+  onComplete?: () => void;
 };
 
 export type GaragePickerMethods = {
