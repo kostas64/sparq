@@ -1,8 +1,8 @@
 import { background, black } from "@/assets/colors";
 import Chevron from "@/assets/images/svg/cheveron-right.svg";
+import AddVehicleCarName from "@/components/s2sTransition/AddVehicleCarName";
 import AddVehicleCarSpecs from "@/components/s2sTransition/AddVehicleCarSpecs";
 import SlideToAdd from "@/components/ui/SlideToAdd";
-import Text from "@/components/ui/Text";
 import { WIDTH } from "@/constants/Constants";
 import { Image } from "expo-image";
 import { router } from "expo-router";
@@ -27,10 +27,7 @@ const AddVehicleScreen = () => {
         <Chevron fill={black} style={{ transform: [{ rotate: "180deg" }] }} />
       </Pressable>
 
-      <Text className="self-center mt-6 font-medium text-3xl">Mazda</Text>
-      <Text className="self-center mt-3 font-heavy text-5xl opacity-40">
-        CX-5 Crossover
-      </Text>
+      <AddVehicleCarName />
 
       <Svg width={WIDTH} height={36} style={{ bottom: 32 }}>
         <LinearGradient id={"fadeOut"} x1="0%" y1="0%" x2="0%" y2="100%">
