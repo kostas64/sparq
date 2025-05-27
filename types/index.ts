@@ -22,6 +22,7 @@ export type AnimatedTypingProps = {
   text: string[];
   textStyle?: StyleProp<TextStyle>;
   cursorStyle?: StyleProp<TextStyle>;
+  cursorInterval?: number;
   onComplete?: () => void;
 };
 
