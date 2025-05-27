@@ -37,7 +37,12 @@ const useShareTransitionStyles = ({
 
   const containerAnimatedStyle = useAnimatedStyle(() => {
     const initialStyle = {
-      width: interpolate(progress.value, [0, 1], [WIDTH - 42, WIDTH]),
+      width: interpolate(
+        progress.value,
+        [0, 1],
+        [WIDTH - 42, WIDTH],
+        Extrapolation.CLAMP
+      ),
       position: "absolute",
       alignSelf: "center",
       bottom: 0,
@@ -95,8 +100,8 @@ const useShareTransitionStyles = ({
   }));
 
   const cardBottomPartAnimatedStyle = useAnimatedStyle(() => ({
-    display: progress.value > 0.6 ? "flex" : "none",
-    opacity: interpolate(progress.value, [0.6, 1], [0, 1], Extrapolation.CLAMP),
+    display: progress.value > 0.9 ? "flex" : "none",
+    opacity: interpolate(progress.value, [0.9, 1], [0, 1], Extrapolation.CLAMP),
     paddingBottom: progress.value === 0 ? 0 : 200,
   }));
 

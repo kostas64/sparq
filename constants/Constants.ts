@@ -106,3 +106,40 @@ export const SLIDER_H = 76;
 // Shared Transition Layout
 export const CAR_W = 368;
 export const CAR_H = 138;
+
+// Notifications
+export const NOTIFICATION_INTERVAL = 150;
+export const NOTIFICATION_HEIGHT = 59;
+
+export const NOTIFICATIONS = [
+  {
+    id: 1,
+    title: "Driver License Reminder",
+    description: "Your license is expiring in 30 days",
+  },
+  {
+    id: 2,
+    title: "New Receipt Added",
+    description: "Checkout the details",
+  },
+  {
+    id: 3,
+    title: "Fuel level low",
+    description: "Fill up some gas",
+  },
+  {
+    id: 4,
+    title: "Engine Oil Low",
+    description: "Your engine oil is low",
+  },
+  {
+    id: 5,
+    title: "Air Filter Replaced",
+    description: "Your air filter is replaced",
+  },
+  {
+    id: 6,
+    title: "Tire Pressure Low",
+    description: "Your tire pressure is low",
+  },
+];

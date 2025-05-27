@@ -29,6 +29,12 @@ export type CarType = {
   miles: string;
 };
 
+export type NotificationListItemType = {
+  id: number;
+  title: string;
+  description: string;
+};
+
 export type EnteringExitingAnimationType =
   | BaseAnimationBuilder
   | typeof BaseAnimationBuilder
