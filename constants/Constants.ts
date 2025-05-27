@@ -8,6 +8,7 @@ export const HEIGHT = Dimensions.get("screen").height;
 export const GENERIC_MAX_MULTIPLIER = isIOS ? 1.7 : 1.3;
 export const MEDIUM_MAX_MULTIPLIER = isIOS ? 1.5 : 1.2;
 export const SMALL_MAX_MULTIPLIER = isIOS ? 1.3 : 1.1;
+export const XS_MAX_MULTIPLIER = isIOS ? 1.15 : 1.05;
 
 // Picker Example
 export const VISIBLE_CARS = 5;
@@ -101,3 +102,7 @@ export const SPRING_ANIM_CONFIG = {
 export const SLIDER_W = WIDTH - 52;
 export const SLIDER_FINAL_W = 76;
 export const SLIDER_H = 76;
+
+// Shared Transition Layout
+export const CAR_W = 368;
+export const CAR_H = 138;

@@ -2,7 +2,6 @@ import { SLIDER_FINAL_W, SLIDER_W } from "@/constants/Constants";
 import React from "react";
 import { View } from "react-native";
 import Animated, {
-  Extrapolation,
   interpolate,
   SharedValue,
   useAnimatedStyle,
@@ -34,7 +33,7 @@ const ChevronToCheck = ({ progress, opacity }: ChevronToCheckProps) => {
         ),
       },
     ],
-    opacity: interpolate(opacity.value, [0, 0.05], [1, 0], Extrapolation.CLAMP),
+    opacity: opacity.value === 0 ? 1 : 0,
   }));
 
   const animatedLine2 = useAnimatedStyle(() => ({
@@ -57,7 +56,7 @@ const ChevronToCheck = ({ progress, opacity }: ChevronToCheckProps) => {
         ),
       },
     ],
-    opacity: interpolate(opacity.value, [0, 0.05], [1, 0], Extrapolation.CLAMP),
+    opacity: opacity.value === 0 ? 1 : 0,
   }));
 
   return (

@@ -15,7 +15,7 @@ function MyTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     <>
       <View
         style={{ marginBottom }}
-        className="flex-row mx-6 justify-around bg-charcoal-75 rounded-full"
+        className="flex-row mx-5 justify-around bg-charcoal-75 rounded-full"
       >
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
