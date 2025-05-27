@@ -24,6 +24,7 @@ const FilesScreen = () => {
   const scrollRef = useRef<FlatList>(null);
   const timeout = useRef<number | null>(null);
   const scrollY = useSharedValue(0);
+  const counter = useSharedValue(0);
   const [notifications, setNotifications] =
     useState<NotificationListItemType[]>(NOTIFICATIONS);
 
@@ -62,29 +63,49 @@ const FilesScreen = () => {
     );
   };
 
-  const generateNotifications = useCallback(() => {
+  const scrollNotifications = useCallback(() => {
     !!timeout.current && clearInterval(timeout.current);
 
     timeout.current = setInterval(() => {
-      setNotifications((old) => [
-        ...old,
-        {
-          ...NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)],
-          id: old.length + 1,
-        },
-      ]);
+      counter.value = counter.value + 1;
+
+      scrollRef.current?.scrollToOffset({
+        animated: true,
+        offset: counter.value * NOTIFICATION_HEIGHT,
+      });
     }, NOTIFICATION_INTERVAL);
+  }, [counter]);
+
+  const generateNotification = useCallback(() => {
+    setInterval(
+      () => {
+        setNotifications((old) => [
+          ...old,
+          {
+            ...NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)],
+            id: old.length + 1,
+          },
+          {
+            ...NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)],
+            id: old.length + 2,
+          },
+          {
+            ...NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)],
+            id: old.length + 3,
+          },
+          {
+            ...NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)],
+            id: old.length + 4,
+          },
+        ]);
+      },
+      NOTIFICATION_INTERVAL * 3 + 50
+    );
   }, []);
 
   useEffect(() => {
-    scrollRef.current?.scrollToOffset({
-      animated: true,
-      offset: (notifications.length - 6) * NOTIFICATION_HEIGHT,
-    });
-  }, [notifications]);
-
-  useEffect(() => {
-    generateNotifications();
+    generateNotification();
+    scrollNotifications();
 
     return () => {
       !!timeout.current && clearInterval(timeout.current);

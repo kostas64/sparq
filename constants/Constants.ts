@@ -108,7 +108,7 @@ export const CAR_W = 368;
 export const CAR_H = 138;
 
 // Notifications
-export const NOTIFICATION_INTERVAL = 150;
+export const NOTIFICATION_INTERVAL = 1500;
 export const NOTIFICATION_HEIGHT = 59;
 
 export const NOTIFICATIONS = [
